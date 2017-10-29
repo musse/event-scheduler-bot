@@ -22,9 +22,9 @@ Telegram group.
 2. Create a Telegram group with yours friends and your bot
 3. [Get your group's chat ID][2]
 4. Edit the `config.yaml` config file:
-  - Set the `apiToken` and the `chatId` (mandatory)
-  - Set the max number of participants
-  - Change the messages and commands to your language
+    - Set the `apiToken` and the `chatId` (mandatory)
+    - Set the max number of participants
+    - Change the messages and commands to your language
 5. Add the commands you set in the config file to the [BotFather](3) with `/setcommands`
 6. Install this bot with `go get github.com/musse/event-scheduler-bot`
 7. Run the bot from the folder with your `config.yaml` file and leave it running
