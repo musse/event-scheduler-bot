@@ -1,0 +1,19 @@
+apiToken: 123456789:ABCDEFGHIJKLMONPQRSTUVWXYZ # replace by your own
+chatId: -1234567890 # replace by your own
+eventFilePath: event.yaml # info about current event is stored in this file
+maxParticipants: 0 # set to zero for unlimited participants
+
+scheduleCommand: schedule
+goCommand: go
+quitCommand: quit
+cancelCommand: cancel
+
+waitlistedHeader: Wait list
+
+scheduledMessage: Event scheduled!
+cancelledMessage: Event cancelled!
+notAdminMessage: You are not an admin!
+noEventScheduledMessage: No event scheduled!!
+noEventDescriptionMessage: Provide the event's description!
+alreadyInEventMessage: is already in the event!
+notInEventMessage: is not in the event!
