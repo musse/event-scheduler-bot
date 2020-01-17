@@ -4,6 +4,7 @@ eventFilePath: event.yaml # info about current event is stored in this file
 maxParticipants: 0 # set to zero for unlimited participants
 
 scheduleCommand: schedule
+editCommand: schedule
 goCommand: go
 quitCommand: quit
 cancelCommand: cancel
@@ -12,6 +13,7 @@ waitlistedHeader: Wait list
 
 scheduledMessage: Event scheduled!
 cancelledMessage: Event cancelled!
+editedMessage: Event edited!
 notAdminMessage: You are not an admin!
 noEventScheduledMessage: No event scheduled!!
 noEventDescriptionMessage: Provide the event's description!

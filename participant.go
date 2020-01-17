@@ -1,6 +1,6 @@
 package main
 
-import "github.com/go-telegram-bot-api/telegram-bot-api"
+import tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 
 type Participant struct {
 	// only set one of the below

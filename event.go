@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
 type Event struct {
@@ -94,15 +94,11 @@ func (e *Event) removeParticipant(participant Participant) error {
 }
 
 func (e *Event) isInEvent(participant Participant) (bool, int) {
+	participantString := participant.String()
 	for i, p := range e.Participants {
-		if p.User != nil && participant.User != nil {
-			if participant.User.ID == p.User.ID {
-				return true, i
-			}
-		} else {
-			if participant.Name == p.Name {
-				return true, i
-			}
+		pString := p.String()
+		if participantString == pString {
+			return true, i
 		}
 	}
 	return false, -1

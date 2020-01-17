@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/sirupsen/logrus"
 )
 
@@ -32,6 +32,29 @@ func (bot *EventBot) handleSchedule(update tgbotapi.Update) {
 	bot.sendReplyToUpdate(replyText, update)
 
 	logrus.Printf("New event scheduled: %s", eventDescription)
+}
+
+func (bot *EventBot) handleEdit(update tgbotapi.Update) {
+	user := update.Message.From
+	if !bot.isAdmin(user) {
+		logrus.Warningf("Can't edit event: user is not admin")
+		bot.sendReplyToUpdate(bot.NotAdminMessage, update)
+		return
+	}
+
+	eventDescription := update.Message.CommandArguments()
+	if eventDescription == "" {
+		logrus.Warningf("Can't edit event: no description provided")
+		bot.sendReplyToUpdate(bot.NoEventDescriptionMessage, update)
+		return
+	}
+
+	bot.currentEvent.Description = eventDescription
+
+	replyText := fmt.Sprintf(bot.EditedMessage + "\n" + eventDescription)
+	bot.sendReplyToUpdate(replyText, update)
+
+	logrus.Printf("Event description edited: %s", eventDescription)
 }
 
 func (bot *EventBot) handleGo(update tgbotapi.Update) {

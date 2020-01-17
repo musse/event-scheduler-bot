@@ -6,7 +6,7 @@ import (
 
 	"errors"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"
 )
@@ -29,6 +29,7 @@ type EventBotConfig struct {
 	MaxParticipants int `yaml:"maxParticipants"`
 
 	ScheduleCommand string `yaml:"scheduleCommand"`
+	EditCommand     string `yaml:"editCommand"`
 	GoCommand       string `yaml:"goCommand"`
 	QuitCommand     string `yaml:"quitCommand"`
 	CancelCommand   string `yaml:"cancelCommand"`
@@ -36,6 +37,7 @@ type EventBotConfig struct {
 	WaitlistedHeader          string `yaml:"waitlistedHeader"`
 	ScheduledMessage          string `yaml:"scheduledMessage"`
 	CancelledMessage          string `yaml:"cancelledMessage"`
+	EditedMessage             string `yaml:"editedMessage"`
 	NotAdminMessage           string `yaml:"notAdminMessage"`
 	NoEventScheduledMessage   string `yaml:"noEventScheduledMessage"`
 	NoEventDescriptionMessage string `yaml:"noEventDescriptionMessage"`
@@ -104,6 +106,8 @@ func (bot *EventBot) handleUpdates() error {
 		switch cmd {
 		case bot.ScheduleCommand:
 			bot.handleSchedule(update)
+		case bot.EditCommand:
+			bot.handleEdit(update)
 		case bot.GoCommand:
 			bot.handleGo(update)
 		case bot.QuitCommand:
